@@ -1,4 +1,4 @@
-var Fixture = require('../lib/fixture');
+var Fixture = require('../lib/arboria');
 
 var mongodb = require('mongodb');
 var Server = mongodb.Server;
