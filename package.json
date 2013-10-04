@@ -2,7 +2,7 @@
   "name": "arboria",
   "version": "0.0.1",
   "description": "A fixture loader for mongo (that doesn't db.open)",
-  "main": "lib/mingo.js",
+  "main": "lib/arboria.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
