@@ -6,8 +6,10 @@ var MongoClient = mongodb.MongoClient;
 
 describe('Fixture', function(){
 
-  it('can take a file path', function(done){
-    var fixture = new Fixture({fixture: 'people', db: ''})
+  it('can take a collectionName, fixture and db and get fixture data', function(done){
+    var server = new Server('localhost', '27017', { native_parser: true });
+    var _connection = new MongoClient(server);
+    var fixture = new Fixture({collectionName: 'people', fixture: [{name: 'Shane', age: 25}], db: _connection.db('test')});
     var data = fixture.getFixtureData()
     data.should.eql([{ "name": "Shane", "age": 25 }]);
     done();
@@ -17,7 +19,7 @@ describe('Fixture', function(){
     var server = new Server('localhost', '27017', { native_parser: true });
     var _connection = new MongoClient(server);
     _connection.open(function(err, mongoClient) {
-      var fixture = new Fixture({fixture: 'people', db: _connection.db('test')});
+      var fixture = new Fixture({collectionName: 'people', fixture: {name: 'Shane', age: 25}, db: _connection.db('test')});
       fixture.load(done);
     });
   });
@@ -26,7 +28,18 @@ describe('Fixture', function(){
     var server = new Server('localhost', '27017', { native_parser: true });
     var _connection = new MongoClient(server);
     _connection.open(function(err, mongoClient) {
-      var fixture = new Fixture({fixture: 'people', db: _connection.db('test')});
+      var fixture = new Fixture({collectionName: 'people', fixture: {name: 'Shane', age: 25}, db: _connection.db('test')});
+      fixture.load(function(){
+        fixture.remove(done);
+      });
+    });
+  });
+
+  it('can take in an object instead of a filename', function(done){
+    var server = new Server('localhost', '27017', { native_parser: true });
+    var _connection = new MongoClient(server);
+    _connection.open(function(err, mongoClient) {
+      var fixture = new Fixture({collectionName: 'people', fixture: {name: 'Shane'}, db: _connection.db('test')});
       fixture.load(function(){
         fixture.remove(done);
       });
