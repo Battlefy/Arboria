@@ -15,18 +15,18 @@ describe('Fixture', function(){
 
   it('can add items to mongodb', function(done){
     var server = new Server('localhost', '27017', { native_parser: true });
-    _connection = new MongoClient(server);
+    var _connection = new MongoClient(server);
     _connection.open(function(err, mongoClient) {
-      var fixture = new Fixture({fixture: 'people', db: mongoClient.db('test')});
+      var fixture = new Fixture({fixture: 'people', db: _connection.db('test')});
       fixture.load(done);
     });
   });
 
   it('can remove items from mongodb', function(done){
     var server = new Server('localhost', '27017', { native_parser: true });
-    _connection = new MongoClient(server);
+    var _connection = new MongoClient(server);
     _connection.open(function(err, mongoClient) {
-      var fixture = new Fixture({fixture: 'people', db: mongoClient.db('test')});
+      var fixture = new Fixture({fixture: 'people', db: _connection.db('test')});
       fixture.load(function(){
         fixture.remove(done);
       });
