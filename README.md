@@ -1,5 +1,5 @@
-Mingo
-=====
+Arboria
+=======
 
 A fixture loader for mongo (that doesn't db.open)
 
