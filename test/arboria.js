@@ -1,8 +1,6 @@
 
 // modules
-var mongodb = require('mongodb');
-var Server = mongodb.Server;
-var MongoClient = mongodb.MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 
 // libs
 var arboria = require('../');
@@ -12,10 +10,12 @@ var Fixture = arboria.Fixture;
 // setup a database connection
 before(function(done) {
   var _this = this;
-  this.server = new Server('localhost', '27017', { native_parser: true });
-  new MongoClient(this.server).open(function(err, mongoclient) {
-    if(err) { throw err; }
-    _this.db = mongoclient.db('arboria-test');
+  var url = 'mongodb://localhost:27017/arboria-test';
+  MongoClient.connect(url, function(err, db) {
+    if (err) {
+      throw err;
+    }
+    _this.db = db;
     done();
   });
 });
