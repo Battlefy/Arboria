@@ -1,6 +1,6 @@
 {
   "name": "arboria",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A fixture loader for mongo (that doesn't db.open)",
   "main": "lib/arboria.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:shanejonas/Mingo.git"
+    "url": "git@github.com:Battlefy/Arboria.git"
   },
   "keywords": [
     "mongo",
@@ -17,14 +17,14 @@
   "author": "Battlefy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shanejonas/Mingo/issues"
+    "url": "https://github.com/Battlefy/Arboria/issues"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
-    "should": "~1.3.0"
+    "should": "~1.3.0",
+    "mongodb": "2.0.46"
   },
   "dependencies": {
-    "mongodb": "~1.3.19",
     "underscore": "~1.5.2"
   }
 }
